@@ -64,4 +64,25 @@ public class Train {
   public void setArrivalTime(String arrivalTime) throws ParseException {
     this.arrivalTime = DateUtils.parseTimestamp(arrivalTime);
   }
+
+  @Override
+  public String toString() {
+    return "Train{" +
+            "runNumber='" + runNumber + '\'' +
+            ", destinationStation='" + destinationStation + '\'' +
+            ", destinationName='" + destinationName + '\'' +
+            ", trainDirection='" + trainDirection + '\'' +
+            ", nextStationId='" + nextStationId + '\'' +
+            ", nextStopId='" + nextStopId + '\'' +
+            ", nextStationName='" + nextStationName + '\'' +
+            ", predictionTimestamp=" + predictionTimestamp +
+            ", arrivalTime=" + arrivalTime +
+            ", isApproaching=" + isApproaching +
+            ", isDelayed=" + isDelayed +
+            ", flags='" + flags + '\'' +
+            ", latitude=" + latitude +
+            ", longitude=" + longitude +
+            ", heading=" + heading +
+            '}';
+  }
 }

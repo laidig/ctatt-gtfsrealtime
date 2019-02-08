@@ -133,11 +133,13 @@ public class TrainTrackerRealtimeProvider {
   private void processTrain(Train train, String route) throws IOException, TrainTrackerDataException, TripMatchingException, URISyntaxException {
     List<Eta> etas = null;
 
-    try {
-      Follow f = _ttds.fetchTrain(train.runNumber);
-      etas = f.etas;
-    } catch (TrainTrackerDataException ex) {
-      _log.warn("Falling back to single-station prediction for train " + train.runNumber, ex);
+    if (train.destinationStation != train.nextStopId) {
+      try {
+        Follow f = _ttds.fetchTrain(train.runNumber);
+        etas = f.etas;
+      } catch (TrainTrackerDataException ex) {
+        _log.warn("Falling back to single-station prediction for train " + train.runNumber);
+      }
     }
 
     if (etas == null || etas.isEmpty()) {
